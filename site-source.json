@@ -1,7 +1,4 @@
 {
-  "publicationEnabled": false,
-  "artifactUrl": "",
-  "sha256": "",
-  "sourceCommit": "",
+  "sourceCommit": "ab5bb56968c5b739880c9540edb6cc4860c4ef06",
   "domain": "docs.pres-studio.com"
 }
