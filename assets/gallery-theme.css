@@ -1,0 +1,88 @@
+:root {
+  color-scheme: light;
+  --paper: #faf9f6;
+  --panel: #fff;
+  --ink: #242333;
+  --muted: #686773;
+  --line: #dedde4;
+  --blue: #6144ce;
+  --soft: #eee9fb;
+  --mint: #d7f5eb;
+  --shadow: 0 14px 40px #2423330b;
+}
+:root[data-theme=dark] {
+  color-scheme: dark;
+  --paper: #14141c;
+  --panel: #1e1e29;
+  --ink: #f3f1fa;
+  --muted: #b2afbf;
+  --line: #363543;
+  --blue: #b5a2ff;
+  --soft: #302846;
+  --mint: #243e38;
+  --shadow: 0 14px 40px #0002;
+}
+body { font-size: 16px; line-height: 1.65; }
+a:hover { color: var(--blue); }
+:focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+h1, h2, h3 { font-weight: 400; letter-spacing: -.035em; }
+.wrap { max-width: 1320px; padding-inline: 42px; }
+.masthead { padding-block: 22px; gap: 20px; }
+.wordmark { font: 700 15px/1.3 Arial, Helvetica, sans-serif; letter-spacing: 0; }
+.brand-label { border-left: 1px solid var(--line); margin-left: 20px; padding-left: 16px; font-size: 14px; font-weight: 400; color: var(--muted); }
+.masthead nav { gap: 18px; }
+.masthead nav a { font-size: 13px; font-weight: 600; }
+.masthead nav a[aria-current=page] { color: var(--blue); text-decoration: none; }
+.theme-select { max-width: 105px; padding: 10px; border: 1px solid var(--line); border-radius: 7px; background: var(--panel); color: var(--ink); font: 12px Arial, sans-serif; cursor: pointer; min-height: 44px; }
+.button { border-radius: 7px; background: var(--ink); color: var(--paper); font-size: 13px; font-weight: 600; border-color: transparent; }
+.button:hover { background: var(--blue); color: var(--paper); }
+.button.secondary { background: var(--panel); color: var(--ink); border-color: var(--line); }
+.button.secondary:hover { border-color: var(--blue); color: var(--blue); }
+.hero { padding-top: 65px; }
+.hero::after { display: none; }
+.hero h1 { font-size: clamp(44px, 5.7vw, 80px); line-height: 1.05; }
+.hero h1 em { color: var(--blue); }
+.hero-copy p { font-size: 17px; color: var(--muted); }
+.eyebrow { font-size: 10px; letter-spacing: 1.8px; }
+.accent { background: var(--blue); width: 48px; height: 3px; }
+.product { border-color: var(--line); background: var(--panel); box-shadow: var(--shadow); }
+.product figcaption { background: var(--panel); color: var(--muted); }
+.step b { background: var(--soft); color: var(--blue); }
+.step p, .card p { color: var(--muted); }
+.card { border: 1px solid var(--line); border-radius: 9px; overflow: hidden; background: var(--panel); padding-bottom: 16px; }
+.card img { border: 0; border-bottom: 1px solid var(--line); border-radius: 0; background: var(--panel); }
+.card h3, .card p, .card > a { margin-left: 18px; margin-right: 18px; }
+.card h3 { font: 600 19px/1.4 Arial, sans-serif; letter-spacing: -.2px; }
+.card p { font-size: 14px; }
+.notice { background: var(--soft); border-color: var(--blue); border-radius: 8px; }
+.skip { background: var(--panel); color: var(--ink); }
+.doc-nav input { color: var(--ink); background: var(--panel); border-color: var(--line); width: 100%; }
+.doc-nav a[aria-current] { background: var(--soft); color: var(--blue); border-radius: 5px; }
+.article { min-width: 0; }
+.article a { text-decoration: underline; }
+.article pre { background: var(--panel); border: 1px solid var(--line); }
+.article th { background: var(--soft); }
+.article blockquote { border-left: 3px solid var(--blue); padding-left: 20px; color: var(--muted); }
+.badge { background: var(--soft); color: var(--blue); border-radius: 4px; font-size: 11px; font-weight: 600; }
+.release-grid section { background: var(--panel); border-radius: 9px; }
+.release-grid section:nth-child(2) .badge { background: var(--mint); color: var(--ink); }
+.release-grid p { color: var(--muted); }
+.release-grid h2 { font-size: 36px; }
+@media (max-width: 1100px) {
+  .masthead { flex-wrap: wrap; }
+  .masthead nav { gap: 14px; }
+}
+@media (max-width: 900px) {
+  .wrap { padding-inline: 24px; }
+  .masthead { align-items: stretch; }
+}
+@media (max-width: 650px) {
+  .wrap { padding-inline: 20px; }
+  .masthead nav { gap: 6px 14px; }
+  .brand-label { margin-left: 14px; padding-left: 14px; }
+  .hero { padding-top: 38px; }
+  .release-grid section { padding: 22px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
