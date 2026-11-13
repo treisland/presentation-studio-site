@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 128" role="img" aria-label="Presentation Studio">
+  <rect x="34" y="6" width="88" height="78" rx="13" fill="#5AD8BE"/>
+  <rect x="6" y="28" width="92" height="78" rx="13" fill="#7057E8"/>
+  <path d="M43 48a3 3 0 0 1 4-2l25 17a4 4 0 0 1 0 6L47 86a3 3 0 0 1-4-2Z" fill="#fff"/>
+  <text x="146" y="77" fill="#182235" font-family="Arial, sans-serif" font-size="42" font-weight="700">Presentation Studio</text>
+</svg>
