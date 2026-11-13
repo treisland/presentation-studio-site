@@ -22,7 +22,9 @@ jobs:
         with:
           node-version: '22'
       - id: prepare
-        run: node scripts/prepare.mjs
+        run: |
+          node --test tests/channels.test.mjs
+          node scripts/prepare.mjs
       - if: steps.prepare.outputs.build == 'true'
         uses: actions/checkout@v4
         with:

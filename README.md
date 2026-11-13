@@ -10,6 +10,10 @@ scripts/publish.mjs is the deployment adapter: it removes local-preview labels, 
 
 Pull requests build and validate without deploying. Main pushes and manual dispatches publish after successful validation. Hourly checks at minute 23 compare the approved configuration identity with the public receipt and skip unchanged builds. They recover missed approved deployments; discovering arbitrary upstream changes does not authorize publication. Update sourceCommit and screenshot inputs through reviewed codex/ PRs. No cross-repository token or app-release artifact contract is needed.
 
+## Automatic release listings
+
+Each run reads the stable and beta app's embedded build identity and verifies the complete served HTML digest against its published GitHub release asset. Missing identity, dirty builds, channel mismatch, draft releases or digest mismatch stop publication. The deployment identity includes both verified channels, so hourly checks rebuild when a deployed release changes even if the approved content commit stays pinned. Release cards and release-note links update; screenshot provenance remains labeled with its original 0.11.0 version. This does not approve arbitrary upstream content changes or promote application releases.
+
 ## Operations
 
 GitHub Pages uses GitHub Actions with custom domain docs.pres-studio.com and enforced HTTPS. DNS CNAME docs points to treisland.github.io. The github-pages environment should be restricted to main. Only the deploy job receives pages:write and id-token:write.

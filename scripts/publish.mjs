@@ -1,8 +1,10 @@
 import { readFile, writeFile, cp, stat } from 'node:fs/promises';
 import { resolve, dirname, join, sep } from 'node:path';
-import { createHash } from 'node:crypto';
+import { deploymentIdentity } from './channels.mjs';
 import assert from 'node:assert/strict';
 const config = JSON.parse(await readFile('site-source.json', 'utf8'));
+const channels = JSON.parse(await readFile('.channels.json', 'utf8'));
+const content = JSON.parse(await readFile('upstream/website/content.json', 'utf8'));
 const output = 'upstream/test-results/companion-preview/publish';
 const provenance = JSON.parse(await readFile(`${output}/provenance.json`, 'utf8'));
 assert.equal(provenance.contentSha, config.sourceCommit);
@@ -22,6 +24,15 @@ for (const page of provenance.pages) {
     .replace(' Image acceptance pending.', '')
     .replace('The v0.16.0 milestone remains development work. This local companion does not promote an app release or publish a new version.', 'Choose the stable app for regular use. Beta releases are opt-in previews; consult their release notes before switching.');
   assert(!/not published|acceptance pending|noindex,nofollow/.test(html));
+  if (page === 'releases.html') {
+    for (const channel of ['stable', 'beta']) {
+      const old = content[channel];
+      assert(html.includes(`<h2>${old.version}</h2>`));
+      html = html.replace(`<h2>${old.version}</h2>`, `<h2>${channels[channel].version}</h2>`)
+        .replaceAll(old.release, channels[channel].release);
+    }
+    html = html.replace('The default app and imagery on this companion.', 'The current stable app. Screenshot versions are labeled separately.');
+  }
   await writeFile(path, html);
   assert.equal((html.match(/<main\b/g) || []).length, 1);
   for (const match of html.matchAll(/(?:href|src)="([^"]+)"/g)) {
@@ -34,8 +45,8 @@ for (const page of provenance.pages) {
     if (anchor && target.endsWith('.html')) assert((await readFile(target, 'utf8')).includes(`id="${anchor}"`));
   }
 }
-const identity = createHash('sha256').update(await readFile('site-source.json')).update(await readFile('captures/manifest.json')).digest('hex');
-await writeFile('public/deployment.json', JSON.stringify({ identity, sourceCommit: config.sourceCommit, publisherCommit: process.env.GITHUB_SHA || 'local-validation' }, null, 2));
+const identity = deploymentIdentity(await readFile('site-source.json'), await readFile('captures/manifest.json'), channels);
+await writeFile('public/deployment.json', JSON.stringify({ identity, channels, sourceCommit: config.sourceCommit, publisherCommit: process.env.GITHUB_SHA || 'local-validation' }, null, 2));
 provenance.publication = 'public';
 provenance.launchAuthorization = 'Maintainer requested publication and direct-source integration in this chat, 2026-11-13.';
 provenance.pending = ['Manual fresh-user observation and screen-reader review are not recorded as completed.'];
