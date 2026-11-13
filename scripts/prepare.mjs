@@ -1,8 +1,10 @@
-import { readFile, appendFile } from 'node:fs/promises';
-import { createHash } from 'node:crypto';
+import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { discoverChannels, deploymentIdentity } from './channels.mjs';
 const config = JSON.parse(await readFile('site-source.json', 'utf8'));
 if (config.domain !== 'docs.pres-studio.com' || !/^[a-f0-9]{40}$/.test(config.sourceCommit)) throw Error('Invalid source configuration');
-const identity = createHash('sha256').update(await readFile('site-source.json')).update(await readFile('captures/manifest.json')).digest('hex');
+const channels = await discoverChannels();
+await writeFile('.channels.json', JSON.stringify(channels));
+const identity = deploymentIdentity(await readFile('site-source.json'), await readFile('captures/manifest.json'), channels);
 let build = true;
 if (process.env.GITHUB_EVENT_NAME === 'schedule') {
   const response = await fetch(`https://${config.domain}/deployment.json`, { cache: 'no-store' });
