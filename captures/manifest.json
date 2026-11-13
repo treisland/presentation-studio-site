@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 1,
+  "review": "pending maintainer image acceptance; local candidate only",
+  "target": {
+    "channel": "stable",
+    "version": "0.11.0",
+    "appSha": "5af10b008fb53c12a479fbfa8913f7ad1b798173",
+    "artifact": "presentation-studio.html",
+    "sha256": "835ba1165cf637974b6bf163b046e9018188435b13cf920d3cc694a1073e40b2",
+    "release": "https://github.com/treisland/presentation-studio/releases/tag/v0.11.0",
+    "asset": "https://github.com/treisland/presentation-studio/releases/download/v0.11.0/presentation-studio.html",
+    "verifiedAt": "2026-11-13",
+    "scenes": [
+      "editor-overview",
+      "examples-gallery",
+      "finished-playback",
+      "example-studio",
+      "example-portfolio",
+      "example-newsletter"
+    ],
+    "inputSha256": "835ba1165cf637974b6bf163b046e9018188435b13cf920d3cc694a1073e40b2"
+  },
+  "contentSha": "149c2a3561d73406a013bb2e96c791f937537139",
+  "contentDirty": true,
+  "environment": {
+    "os": "win32",
+    "release": "10.0.26300",
+    "arch": "x64",
+    "browser": "151.0.7922.34",
+    "playwright": "1.62.1"
+  },
+  "config": {
+    "viewport": {
+      "width": 1440,
+      "height": 960
+    },
+    "deviceScaleFactor": 1,
+    "colorScheme": "light",
+    "locale": "en-US",
+    "timezoneId": "UTC",
+    "reducedMotion": "reduce"
+  },
+  "command": [
+    "node",
+    "scripts/capture-companion.mjs",
+    "--target",
+    "stable-v0.11.0",
+    "--input",
+    "../v016-capture-pipeline/test-results/stable-input/presentation-studio.html",
+    "--out",
+    "test-results/companion-captures/website-input"
+  ],
+  "images": [
+    {
+      "id": "editor-overview",
+      "alt": "Presentation Studio editor with slide navigation, editable canvas and inspector.",
+      "fixture": "Bundled original Studio demo, first slide; clean browser profile.",
+      "consumers": [
+        "home",
+        "first-presentation"
+      ],
+      "file": "editor-overview.raw.png",
+      "kind": "raw",
+      "sha256": "0a52abc224d6f4405eeed93214f77658ab5bae4d952544bcaa82ada3cab5ea98",
+      "review": "pending"
+    },
+    {
+      "id": "examples-gallery",
+      "alt": "Studio’s original example collection with editable starters and finished demos.",
+      "fixture": "Bundled original examples gallery; no imported customer content.",
+      "consumers": [
+        "examples"
+      ],
+      "file": "examples-gallery.raw.png",
+      "kind": "raw",
+      "sha256": "cf1761d5e4d656e12effa44c839e0c486cfb54fddd8c13ad926b2853b25768cb",
+      "review": "pending"
+    },
+    {
+      "id": "finished-playback",
+      "alt": "The first slide of the original Studio demo in paused playback.",
+      "fixture": "Bundled original Studio demo, first slide, paused at zero elapsed time.",
+      "consumers": [
+        "home",
+        "present-offline"
+      ],
+      "file": "finished-playback.raw.png",
+      "kind": "raw",
+      "sha256": "3ddab7bc2a5901c640ecb794094241b8b6a8b69d3542359277466b640d5d1194",
+      "review": "pending"
+    },
+    {
+      "id": "example-studio",
+      "scene": "examples-gallery",
+      "alt": "Actual studio example preview in stable Studio.",
+      "fixture": "Bundled original studio demo selected through the examples gallery.",
+      "consumers": [
+        "examples"
+      ],
+      "crop": "#lc-example-preview",
+      "file": "example-studio.preview.png",
+      "kind": "crop",
+      "region": {
+        "x": 603.390625,
+        "y": 427.71875,
+        "width": 771.609375,
+        "height": 434.015625
+      },
+      "parentFile": "example-studio.raw.png",
+      "parentSha256": "b524ec0a4f2ae588388e9f55bfc6012f828eb32eed954f953e5507fa7f0e695c",
+      "sha256": "ff9c0a242119c82c5aabbcdf9c5de0996b5cfc005a5ded420135ecd6cdc82531",
+      "review": "pending"
+    },
+    {
+      "id": "example-portfolio",
+      "scene": "examples-gallery",
+      "alt": "Actual portfolio example preview in stable Studio.",
+      "fixture": "Bundled original portfolio demo selected through the examples gallery.",
+      "consumers": [
+        "examples"
+      ],
+      "crop": "#lc-example-preview",
+      "file": "example-portfolio.preview.png",
+      "kind": "crop",
+      "region": {
+        "x": 603.390625,
+        "y": 427.71875,
+        "width": 771.609375,
+        "height": 434.015625
+      },
+      "parentFile": "example-portfolio.raw.png",
+      "parentSha256": "254f1c0e3d885174f256459005ae940e0e0beaafcf90225dae61769843fabd2f",
+      "sha256": "4bb6362cc8fd2c2ab87cf5d6835098d3daf5a9f1ac26ed8048fe3c654e44a458",
+      "review": "pending"
+    },
+    {
+      "id": "example-newsletter",
+      "scene": "examples-gallery",
+      "alt": "Actual newsletter example preview in stable Studio.",
+      "fixture": "Bundled original newsletter demo selected through the examples gallery.",
+      "consumers": [
+        "examples"
+      ],
+      "crop": "#lc-example-preview",
+      "file": "example-newsletter.preview.png",
+      "kind": "crop",
+      "region": {
+        "x": 603.390625,
+        "y": 427.71875,
+        "width": 771.609375,
+        "height": 434.015625
+      },
+      "parentFile": "example-newsletter.raw.png",
+      "parentSha256": "78eb67ecaaa53af652c6a72c47583d9d9856f3b34f1ec8b33e0a0e19148e656a",
+      "sha256": "26694fdea7cbe4b945adad445488a583b2ef82aef0a2af6a6bbb2e745161e12c",
+      "review": "pending"
+    }
+  ],
+  "deferred": [
+    {
+      "id": "media-focus",
+      "alt": "Media Focus showing an original media asset.",
+      "fixture": "Deferred until a selected promoted artifact and original media fixture are reviewed.",
+      "consumers": [
+        "media"
+      ]
+    },
+    {
+      "id": "ai-import-preview",
+      "alt": "Portable AI authoring import preview before applying a project.",
+      "fixture": "Deferred until a selected promoted artifact and validated original authoring fixture are reviewed.",
+      "consumers": [
+        "portable-ai"
+      ]
+    }
+  ]
+}
