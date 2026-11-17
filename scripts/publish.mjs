@@ -24,6 +24,13 @@ for (const page of provenance.pages) {
     .replace(' Image acceptance pending.', '')
     .replace('The v0.16.0 milestone remains development work. This local companion does not promote an app release or publish a new version.', 'Choose the stable app for regular use. Beta releases are opt-in previews; consult their release notes before switching.');
   assert(!/not published|acceptance pending|noindex,nofollow/.test(html));
+  html = html.replace('<meta charset="utf-8">', `<meta charset="utf-8"><script src="${prefix}assets/branding/theme.js"></script>`)
+    .replace('</head>', `<link rel="icon" href="${prefix}assets/branding/logo-symbol.svg" type="image/svg+xml"><link rel="stylesheet" href="${prefix}assets/branding/gallery-theme.css"></head>`)
+    .replace('>Presentation Studio</a><nav', '>Presentation Studio<span class="brand-label">Docs</span></a><nav')
+    .replace('<a class="button" href="https://pres-studio.com/">Open Studio</a></nav>', '<a href="https://gallery.pres-studio.com/">Gallery ↗</a><select id="theme-preference" class="theme-select" aria-label="Color theme"><option value="system">System</option><option value="light">Light</option><option value="dark">Dark</option></select><a class="button" href="https://pres-studio.com/">Open Studio</a></nav>')
+    .replace('Create in your browser.<br>Present anywhere.</h1>', 'Create in your browser.<br><em>Present anywhere.</em></h1>');
+  assert(html.includes('id="theme-preference"'), 'Theme control missing');
+  assert(html.includes('class="brand-label"'), 'Docs brand label missing');
   if (page === 'releases.html') {
     for (const channel of ['stable', 'beta']) {
       const old = content[channel];

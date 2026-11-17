@@ -22,6 +22,8 @@ Rollback: restore a previously validated sourceCommit and matching captures thro
 
 ## Branding
 
+The public adapter adds the Gallery's warm light/charcoal dark palette, violet accents, shared Docs brand label and Gallery link. Light/Dark/System preferences are stored locally per docs origin. System mode tracks OS changes and the small head script applies the selected theme before styles paint. App screenshots are never inverted or recolored. Theme assets are source files in assets/ and apply across all generated pages. Release discovery and canonical content ownership remain unchanged.
+
 assets/logo-symbol.svg is the stacked-player mark. logo-dark.svg has dark lettering for light backgrounds; logo-light.svg has light lettering for dark backgrounds. Violet #7057E8, mint #5AD8BE, ink #182235, paper #F7F8FC. Wordmarks use live Arial text; outlined typography is a future refinement.
 
 ## Local validation
