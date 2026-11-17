@@ -9,8 +9,10 @@ export async function discoverChannels(request = fetch) {
     const match = bytes.toString('utf8').match(/<script id="studio-build-info" type="application\/json">([^<]+)<\/script>/);
     if (!match) throw Error(`Missing ${channel} build identity`);
     const info = JSON.parse(match[1]);
-    if (info.channel !== channel || info.dirty !== false || !/^[a-f0-9]{40}$/.test(info.commit) || !/^\d+\.\d+\.\d+(?:-beta\.\d+)?$/.test(info.version)) throw Error(`Invalid ${channel} build identity`);
-    if ((channel === 'beta') !== info.version.includes('-beta.')) throw Error('Channel/version mismatch');
+    const version=typeof info.version==='string'&&info.version.match(/^\d+\.\d+\.\d+(?:-(beta|rc)\.\d+)?$/);
+    const buildChannel=version?.[1]||'stable';
+    if (!version || info.channel !== buildChannel || info.dirty !== false || !/^[a-f0-9]{40}$/.test(info.commit)) throw Error(`Invalid ${channel} build identity`);
+    if ((channel === 'beta') !== (buildChannel !== 'stable')) throw Error('Channel/version mismatch');
     const tag = `v${info.version}`;
     const releaseResponse = await request(`https://api.github.com/repos/treisland/presentation-studio/releases/tags/${tag}`, { headers: { Accept: 'application/vnd.github+json' }, cache: 'no-store' });
     if (!releaseResponse.ok) throw Error(`Cannot verify published ${tag}`);
