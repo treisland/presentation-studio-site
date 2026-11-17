@@ -12,7 +12,7 @@ Pull requests build and validate without deploying. Main pushes and manual dispa
 
 ## Automatic release listings
 
-Each run reads the stable and beta app's embedded build identity and verifies the complete served HTML digest against its published GitHub release asset. Missing identity, dirty builds, channel mismatch, draft releases or digest mismatch stop publication. The deployment identity includes both verified channels, so hourly checks rebuild when a deployed release changes even if the approved content commit stays pinned. Release cards and release-note links update; screenshot provenance remains labeled with its original 0.11.0 version. This does not approve arbitrary upstream content changes or promote application releases.
+Each run reads the stable and beta/RC app's embedded build identity and verifies the complete served HTML digest against its published GitHub release asset. Missing identity, dirty builds, channel mismatch, unsupported alpha/development previews, draft releases or digest mismatch stop publication. The deployment identity includes both verified channels, so hourly checks rebuild when a deployed release changes even if the approved content commit stays pinned. Release cards and release-note links update; screenshot provenance remains labeled with its original 0.11.0 version. This does not approve arbitrary upstream content changes or promote application releases.
 
 ## Operations
 
